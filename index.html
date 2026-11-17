@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPITAL PHARMA - Medical Representative Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        pharma: {
+                            50: '#f0f7ff', 100: '#e0effe', 500: '#0284c7', 600: '#0369a1',
+                            700: '#075985', 800: '#0c4a6e', 900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f7fb;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- ================= TOP HEADER ================= -->
+    <header class="bg-gradient-to-r from-pharma-900 via-pharma-800 to-teal-900 text-white shadow-lg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex justify-between items-center px-8">
+            <svg class="w-32 h-32 text-white transform -rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 10h-5V5c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1v5H5c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h5v5c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-5h5c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1z"/>
+            </svg>
+            <svg class="w-40 h-40 text-teal-300 transform rotate-12" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 10h-5V5c0-.55-.45-1-1-1h-2c-.55 0-1 .45-1 1v5H5c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1h5v5c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-5h5c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1z"/>
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 pt-5 pb-5 relative z-10 flex flex-col items-center text-center">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-2">
+                <!-- Changed width to w-32/w-40 to make it rectangular, and added scale-110 to fit edge-to-edge -->
+                <div class="h-20 sm:h-24 w-32 sm:w-40 rounded-2xl bg-white shadow-xl border-2 border-teal-300/60 flex items-center justify-center overflow-hidden shrink-0">
+                    <img 
+                        src="" 
+                        alt="CAPITAL PHARMA Logo" 
+                        class="w-full h-full object-contain scale-[1.15]"
+                        onerror="tryVariants(this, 'LOGO', false)"
+                    >
+                </div>
+                <div class="text-center sm:text-left">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-teal-200 text-[11px] font-semibold tracking-widest uppercase mb-1">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        MR Visual Detailing Portal
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white drop-shadow-sm">
+                        CAPITAL PHARMA
+                    </h1>
+                </div>
+            </div>
+            <div class="mt-2 flex items-center justify-center">
+                <a href="tel:9881455537" class="inline-flex items-center gap-2.5 bg-white/15 hover:bg-white/25 active:scale-95 transition-all px-5 py-2 rounded-full text-sm sm:text-base font-semibold text-white backdrop-blur-md border border-white/25 shadow-md">
+                    <span class="flex items-center justify-center w-6 h-6 rounded-full bg-teal-400/20 text-teal-300">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    </span>
+                    <span class="tracking-wide text-teal-100 font-bold">Jayant M Patil</span>
+                    <span class="text-white/40">&bull;</span>
+                    <span class="tracking-wider font-extrabold text-white underline decoration-teal-400/60 underline-offset-4">9881455537</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= STICKY SEARCH & FILTER BAR ================= -->
+    <section class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row gap-2.5 items-stretch md:items-center">
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <input 
+                        id="searchInput" 
+                        type="text" 
+                        placeholder="Search doctors (e.g. Dr. Phirke, Kela) or medicine (NIP, Refacold)..." 
+                        class="w-full pl-11 pr-10 py-2.5 bg-slate-100 hover:bg-slate-100/80 focus:bg-white rounded-xl border border-slate-200 focus:border-pharma-500 focus:ring-4 focus:ring-pharma-500/15 outline-none text-sm sm:text-base text-slate-800 placeholder-slate-400 transition-all"
+                    >
+                    <button id="clearSearchBtn" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600" title="Clear search">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+                    <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200 shrink-0">
+                        <button id="tabDoctorsBtn" onclick="switchMainView('DOCTORS')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-pharma-700 text-white shadow-sm">Doctors List</button>
+                        <button id="tabCatalogBtn" onclick="switchMainView('CATALOG')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-slate-900">Visual Aid Catalog</button>
+                    </div>
+                    <button onclick="openImageManagerModal()" class="shrink-0 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-pharma-50 hover:bg-pharma-100 text-pharma-700 font-semibold text-xs border border-pharma-200 transition-all active:scale-95">
+                        <svg class="w-4 h-4 text-pharma-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <span>Manage Images</span>
+                    </button>
+                    <button onclick="openAddDoctorModal()" class="shrink-0 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-pharma-600 hover:bg-pharma-700 text-white font-semibold text-xs shadow-sm transition-all active:scale-95">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                        <span>Add Doctor</span>
+                    </button>
+                </div>
+            </div>
+            <div class="mt-2.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5" id="medicineFilterBar"></div>
+        </div>
+    </section>
+
+    <!-- ================= MAIN CONTENT AREA ================= -->
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-5">
+        <div id="doctorsViewSection">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">Assigned Doctors & Visual Aids</h2>
+                    <span id="doctorCountBadge" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-pharma-100 text-pharma-800">6</span>
+                </div>
+                <p class="text-xs text-slate-500 hidden sm:block">Tap any medicine visual card for full-screen detailing presentation</p>
+            </div>
+            <div id="doctorsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5"></div>
+            <div id="emptyState" class="hidden bg-white rounded-2xl border border-slate-200 p-10 text-center my-6 shadow-sm">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-700">No matching doctors found</h3>
+                <p class="text-sm text-slate-500 mt-1 max-w-sm mx-auto">We couldn't find any doctor or assigned medicine matching your search filter.</p>
+                <button onclick="resetFilters()" class="mt-4 px-4 py-2 rounded-xl bg-pharma-600 text-white text-sm font-semibold hover:bg-pharma-700 transition">Show All Doctors</button>
+            </div>
+        </div>
+
+        <div id="catalogViewSection" class="hidden">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">All Capital Pharma Visual Aids</h2>
+                    <span id="catalogCountBadge" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-teal-100 text-teal-800">11</span>
+                </div>
+            </div>
+            <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
+        </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-white border-t border-slate-200/80 py-4 px-4 text-center text-xs text-slate-400 mt-auto">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span class="font-semibold text-slate-600">CAPITAL PHARMA &bull; Jayant M Patil: 9881455537</span>
+            <span>Medical Representative Product Assignment & Visual Detailing App</span>
+        </div>
+    </footer>
+
+    <input type="file" id="hiddenImageInput" accept="image/*" class="hidden">
+
+    <!-- ================= MODAL 1: PREVIEW ================= -->
+    <div id="previewModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[95vh] animate-fade-in">
+            <div class="px-4 sm:px-6 py-3.5 bg-gradient-to-r from-pharma-900 via-pharma-800 to-teal-900 text-white flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                    <div class="flex items-center gap-2">
+                        <span id="previewContextLabel" class="text-[11px] uppercase tracking-widest text-teal-300 font-bold truncate">CAPITAL PHARMA VISUAL AID</span>
+                        <span id="previewSlideCounter" class="hidden px-2 py-0.5 text-[10px] font-extrabold rounded-full bg-white/15 text-white"></span>
+                    </div>
+                    <h3 id="previewMedicineTitle" class="text-lg sm:text-2xl font-extrabold tracking-tight truncate">MEDICINE</h3>
+                    <p id="previewMedicineSubtitle" class="text-xs text-slate-200 truncate mt-0.5"></p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <div id="previewVariantToggle" class="hidden items-center bg-white/10 p-1 rounded-xl border border-white/15"></div>
+                    <button onclick="closePreviewModal()" class="p-2 rounded-xl bg-white/10 hover:bg-white/25 text-white transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                </div>
+            </div>
+            <div class="relative flex-1 bg-slate-900 flex items-center justify-center min-h-[300px] sm:min-h-[440px] max-h-[72vh] overflow-hidden select-none">
+                <button id="prevSlideBtn" onclick="navigateDoctorSlide(-1)" class="hidden absolute left-3 z-20 p-2.5 sm:p-3 rounded-full bg-slate-900/70 hover:bg-pharma-600 text-white border border-white/20 shadow-lg"><svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+                <div id="previewImageContainer" class="w-full h-full flex items-center justify-center p-2 sm:p-4 overflow-auto"></div>
+                <button id="nextSlideBtn" onclick="navigateDoctorSlide(1)" class="hidden absolute right-3 z-20 p-2.5 sm:p-3 rounded-full bg-slate-900/70 hover:bg-pharma-600 text-white border border-white/20 shadow-lg"><svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+            </div>
+            <div class="px-4 sm:px-6 py-3.5 bg-white border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="text-xs text-slate-500 min-w-0">
+                    <span class="font-bold text-slate-700 uppercase tracking-wider text-[10px] block mb-0.5">Assigned Doctors:</span>
+                    <span id="previewAssignedDoctors" class="font-medium text-slate-700"></span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button id="previewUploadBtn" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-pharma-50 hover:bg-pharma-100 text-pharma-700 border border-pharma-200 text-xs font-bold transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                        <span>Upload / Replace Image</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 2: MANAGE IMAGES ================= -->
+    <div id="imageManagerModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[88vh] flex flex-col overflow-hidden shadow-2xl border border-slate-100 animate-fade-in">
+            <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800">Manage Medicine Images</h3>
+                    <p class="text-xs text-slate-500">Upload a photo for any medicine once — it updates across all assigned doctors.</p>
+                </div>
+                <button onclick="closeImageManagerModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </div>
+            <div id="imageManagerList" class="p-5 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+            <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                <span class="text-xs text-slate-500">Images are saved automatically.</span>
+                <button onclick="closeImageManagerModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold transition">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL 3: ADD DOCTOR ================= -->
+    <div id="addDoctorModal" class="fixed inset-0 z-50 hidden bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100 animate-fade-in">
+            <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                <h3 class="text-lg font-bold text-slate-800">Add Doctor</h3>
+                <button onclick="closeAddDoctorModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+            </div>
+            <form id="addDoctorForm" onsubmit="handleAddDoctor(event)" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Doctor Name</label>
+                    <input type="text" id="newDocName" required placeholder="e.g. DR. S. K. SHARMA" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-pharma-500 focus:ring-4 focus:ring-pharma-500/15 outline-none text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Assigned Medicines</label>
+                    <input type="text" id="newDocMeds" required placeholder="e.g. NIP, STEROBIT, REFACOLD" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-pharma-500 focus:ring-4 focus:ring-pharma-500/15 outline-none text-sm">
+                    <div class="mt-2 flex flex-wrap gap-1.5" id="quickAddMedChips"></div>
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeAddDoctorModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-100">Cancel</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-pharma-600 hover:bg-pharma-700 text-white text-xs font-semibold shadow-sm">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= APPLICATION LOGIC & AUTO-HEALING IMAGE LOADER ================= -->
+    <script>
+        // --- 1. THE AUTO-HEALING IMAGE DATABASE ---
+        // This covers every exact filename you uploaded, regardless of case or extension.
+        const imageVariants = {
+            "NIP": ["NIP.jpeg", "NIP.jpg", "nip.jpeg", "nip.jpg", "NIP_2.jpeg", "NIP_2.jpg"],
+            "CYPOTRON": ["CYPOTRAN.jpg", "CYPOTRAN.jpeg", "cypotran.jpg", "cypotran.jpeg", "CYPOTRAN_2.jpg", "cypotron.jpg"],
+            "CYPOTRAN": ["CYPOTRAN.jpg", "CYPOTRAN.jpeg", "cypotran.jpg", "cypotran.jpeg", "CYPOTRAN_2.jpg"],
+            "REFACOLD": ["REFACOLD.jpeg", "REFACOLD.jpg", "refacold.jpeg", "refacold.jpg", "REFACOLD_2.jpeg"],
+            "REFACOLD+": ["REFACOLD+.jpg", "REFACOLD+.jpeg", "refacold+.jpg", "REFACOLD+_2.jpg"],
+            "SALBREX": ["SALBREX.jpg", "SALBREX.jpeg", "salbrex.jpg", "salbrex.jpeg", "SALBREX_2.jpg"],
+            "NIP SP": ["NIP SP.jpg", "NIP SP.jpeg", "nip sp.jpg", "nip sp.jpeg", "NIP_SP.jpg", "NIP SP_2.jpg"],
+            "STEROBIT": ["sterobet.jpeg", "sterobet.jpg", "STEROBIT.jpeg", "STEROBIT.jpg"],
+            "SALBREX LS": ["salbrex ls.jpeg", "salbrex ls.jpg", "SALBREX LS.jpeg", "SALBREX LS.jpg"],
+            "NIPCOLD +": ["NIP COLD+.jpeg", "NIP COLD+.jpg", "nip cold+.jpeg", "NIP COLD+_2.jpeg", "NIPCOLD+.jpeg"],
+            "SALBREX-DX": ["SALBREX-DX.jpeg", "SALBREX-DX.jpg", "salbrex-dx.jpeg"],
+            "IDL": ["IDL.jpeg", "IDL.jpg", "idl.jpeg", "idl.jpg", "IDL GEL.jpeg"],
+            "ELOX GEL": ["ELOX.jpeg", "ELOX.jpg", "elox.jpeg", "ELOX GEL.jpeg"],
+            "LOGO": ["CAPITAL PHARMA.jpeg", "CAPITAL PHARMA.jpg", "capital pharma.jpeg", "capital pharma.jpg"]
+        };
+
+        // This function dynamically generates the beautiful SVG if all images fail
+        function getSvgFallbackDataUri(medName, isLarge) {
+            const theme = MEDICINE_THEMES[medName] || { accent: '#0284c7', bgLight: '#e0f2fe', form: 'tablet' };
+            let graphicSvg = '';
+            if (theme.form === 'syrup') {
+                graphicSvg = `<rect x="28" y="22" width="46" height="62" rx="6" fill="white" stroke="${theme.accent}" stroke-width="2.2"/><rect x="28" y="34" width="46" height="16" fill="${theme.accent}" opacity="0.18"/><line x1="35" y1="58" x2="62" y2="58" stroke="${theme.accent}" stroke-width="2" stroke-linecap="round"/><line x1="35" y1="66" x2="54" y2="66" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/><rect x="64" y="36" width="28" height="48" rx="6" fill="${theme.accent}"/><rect x="71" y="26" width="14" height="10" rx="2" fill="#334155"/><rect x="67" y="48" width="22" height="22" rx="2" fill="white"/><path d="M78 54v10M73 59h10" stroke="${theme.accent}" stroke-width="2.2" stroke-linecap="round"/>`;
+            } else if (theme.form === 'vial') {
+                graphicSvg = `<rect x="24" y="24" width="54" height="58" rx="6" fill="white" stroke="${theme.accent}" stroke-width="2.2"/><rect x="24" y="24" width="54" height="14" rx="4" fill="${theme.accent}"/><circle cx="51" cy="56" r="11" fill="${theme.bgLight}" stroke="${theme.accent}" stroke-width="2"/><path d="M51 51v10M46 56h10" stroke="${theme.accent}" stroke-width="2" stroke-linecap="round"/><rect x="70" y="38" width="22" height="44" rx="4" fill="white" stroke="${theme.accent}" stroke-width="2"/><rect x="74" y="30" width="14" height="8" rx="2" fill="${theme.accent}"/><rect x="73" y="52" width="16" height="18" fill="${theme.accent}" opacity="0.25"/>`;
+            } else {
+                graphicSvg = `<rect x="22" y="24" width="62" height="56" rx="7" fill="white" stroke="${theme.accent}" stroke-width="2.2"/><rect x="22" y="24" width="62" height="15" rx="5" fill="${theme.accent}"/><line x1="30" y1="49" x2="64" y2="49" stroke="${theme.accent}" stroke-width="2.5" stroke-linecap="round"/><line x1="30" y1="58" x2="52" y2="58" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/><g transform="rotate(-28 78 64)"><rect x="62" y="55" width="34" height="16" rx="8" fill="white" stroke="${theme.accent}" stroke-width="2.2"/><path d="M79 55h9a8 8 0 018 8 8 8 0 01-8 8h-9V55z" fill="${theme.accent}"/></g>`;
+            }
+
+            const scale = isLarge ? 'scale(2.5)' : 'scale(1.2)';
+            const tX = isLarge ? '100' : '40';
+            const tY = isLarge ? '50' : '30';
+
+            const fullSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${isLarge?'400':'180'}" height="${isLarge?'300':'150'}" viewBox="0 0 ${isLarge?'400':'180'} ${isLarge?'300':'150'}"><rect width="100%" height="100%" fill="${theme.bgLight}"/><g transform="translate(${tX}, ${tY}) ${scale}">${graphicSvg}</g><text x="50%" y="${isLarge?'250':'130'}" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="${theme.accent}" font-size="${isLarge?'24':'14'}">${medName}</text></svg>`;
+            return "data:image/svg+xml;utf8," + encodeURIComponent(fullSvg);
+        }
+
+        window.tryVariants = function(imgElement, medKey, isLarge = false) {
+            if (imgElement.dataset.tried) return; 
+            imgElement.dataset.tried = "true";
+
+            const list = imageVariants[medKey] || [`${medKey}.jpg`, `${medKey}.jpeg`];
+            let idx = 0;
+
+            function testNext() {
+                if (idx < list.length) {
+                    imgElement.src = list[idx];
+                    idx++;
+                } else {
+                    imgElement.onerror = null;
+                    imgElement.src = getSvgFallbackDataUri(medKey, isLarge);
+                }
+            }
+            imgElement.onerror = testNext;
+            testNext();
+        };
+
+        // --- 2. DOCTORS DATA & THEMES ---
+        const INITIAL_DOCTORS = [
+            { id: 'doc-1', name: 'DR. RAJENDRA PHIRKE', medicines: ['NIP', 'STEROBIT'] },
+            { id: 'doc-2', name: 'DR. G. O. JADHAV', medicines: ['REFACOLD'] },
+            { id: 'doc-3', name: 'DR. ASHOK NAPHADE', medicines: ['NIP', 'CYPOTRON'] },
+            { id: 'doc-4', name: 'DR. M. D. KELA', medicines: ['SALBREX', 'NIP', 'CYPOTRON'] },
+            { id: 'doc-5', name: 'DR. B. M. KELA', medicines: ['CYPOTRON', 'NIP', 'SALBREX LS'] },
+            { id: 'doc-6', name: 'DR. D. K. PATIL', medicines: ['REFACOLD', 'NIP SP', 'IDL'] }
+        ];
+
+        const MEDICINE_THEMES = {
+            'NIP': { category: 'Analgesic & Antipyretic', composition: 'Nimesulide 100mg + Paracetamol 325mg Tablet', accent: '#0284c7', bgLight: '#e0f2fe', badgeText: 'NIP Tablet', form: 'tablet' },
+            'STEROBIT': { category: 'Specialty Formulation', composition: 'Capital Pharma Specialty Care', accent: '#7c3aed', bgLight: '#ede9fe', badgeText: 'Steroid / Care', form: 'vial' },
+            'REFACOLD': { 
+                category: 'Pediatric & Adult Cold Relief', composition: 'Paracetamol 125mg + Phenylephrine 5mg + CPM 0.5mg Drops / Plus Tab', accent: '#0d9488', bgLight: '#ccfbf1', badgeText: 'Drops & Plus Tab', form: 'syrup',
+                variants: [
+                    { label: 'Refacold Drops', file: 'REFACOLD', subtitle: 'Paracetamol 125mg + Phenylephrine 5mg + CPM 0.5mg + Sodium Citrate 60mg Drops' },
+                    { label: 'Refacold + Tab', file: 'REFACOLD+', subtitle: 'Aceclofenac 100mg + Paracetamol 325mg + Phenylephrine 5mg + Caffeine 25mg + Cetirizine 10mg' }
+                ]
+            },
+            'REFACOLD+': { category: 'Cold & Fever Relief', composition: 'Aceclofenac 100mg + Paracetamol 325mg + Phenylephrine 5mg + Caffeine 25mg + Cetirizine 10mg', accent: '#e11d48', bgLight: '#ffe4e6', badgeText: 'Anti-Cold Tablet', form: 'tablet' },
+            'CYPOTRON': { category: 'Appetite Stimulant & Hepato-Protective', composition: 'Cyproheptadine 2mg + Tricholine Citrate 275mg + Sorbitol Solution 70% Syrup', accent: '#ea580c', bgLight: '#ffedd5', badgeText: 'Cypotran Syrup', form: 'syrup' },
+            'SALBREX': { category: 'Cough & Bronchodilator Syrup', composition: 'Ambroxol HCl 15mg + Terbutaline Sulphate 1.25mg + Guaiphenesin 50mg + Menthol 2.5mg', accent: '#16a34a', bgLight: '#dcfce7', badgeText: 'Cough Syrup', form: 'syrup' },
+            'SALBREX LS': { category: 'Respiratory Expectorant', composition: 'LS Expectorant Formulation', accent: '#0891b2', bgLight: '#cffafe', badgeText: 'LS Expectorant', form: 'syrup' },
+            'NIP SP': { category: 'Pain & Inflammation Relief', composition: 'Nimesulide 100mg + Paracetamol 325mg + Serratiopeptidase 15mg', accent: '#dc2626', bgLight: '#fee2e2', badgeText: 'NIP-SP Tab', form: 'tablet' },
+            'IDL': { category: 'Fast Pain Reliever Gel', composition: 'Diclofenac Diethylamine 1.16% + Linseed Oil 3% + Methyl Salicylate 10% + Menthol 5% Gel', accent: '#d97706', bgLight: '#fef3c7', badgeText: 'IDL Gel', form: 'vial' },
+            'ELOX GEL': { category: 'Antacid & Anti-Flatulent Gel', composition: 'Oxetacaine 10mg + Aluminium Hydroxide 0.291gm + Magnesium Hydroxide 98mg Gel', accent: '#15803d', bgLight: '#dcfce7', badgeText: 'Antacid Gel', form: 'syrup' },
+            'NIPCOLD +': { category: 'Sinusitis & Cold Relief', composition: 'Nimesulide 100mg + Paracetamol 325mg + Phenylephrine 10mg + Caffeine 25mg Tablets', accent: '#b91c1c', bgLight: '#fee2e2', badgeText: 'Nipcold+ Tab', form: 'tablet' }
+        };
+
+        // --- 3. STATE & STORAGE ---
+        let doctorsList = [];
+        let customMedicineImages = {};
+        let currentSearchQuery = '';
+        let activeMedicineFilter = 'ALL';
+        let currentMainView = 'DOCTORS'; 
+        let pendingMedicineUploadName = null;
+
+        let activeLightboxDoctorId = null;
+        let activeLightboxMedIndex = 0;
+
+        function loadState() {
+            try {
+                const savedDoctors = localStorage.getItem('capital_pharma_doctors_v1');
+                doctorsList = savedDoctors ? JSON.parse(savedDoctors) : [...INITIAL_DOCTORS];
+                const savedImages = localStorage.getItem('capital_pharma_med_images_v1');
+                customMedicineImages = savedImages ? JSON.parse(savedImages) : {};
+            } catch (e) {
+                doctorsList = [...INITIAL_DOCTORS];
+                customMedicineImages = {};
+            }
+        }
+
+        function saveDoctorsState() {
+            try { localStorage.setItem('capital_pharma_doctors_v1', JSON.stringify(doctorsList)); } catch (e) {}
+        }
+
+        function saveImagesState() {
+            try { localStorage.setItem('capital_pharma_med_images_v1', JSON.stringify(customMedicineImages)); } catch (e) {}
+        }
+
+        function getAllUniqueMedicines() {
+            const set = new Set();
+            doctorsList.forEach(doc => doc.medicines.forEach(med => set.add(med.trim().toUpperCase())));
+            ['ELOX GEL', 'NIPCOLD +', 'REFACOLD+'].forEach(extra => set.add(extra));
+            return Array.from(set);
+        }
+
+        // Outputting the img tag that triggers auto-healing
+        function getMedicineVisualMarkup(medName, isLarge = false, overrideVariantKey = null) {
+            const normalizedKey = overrideVariantKey || medName.trim().toUpperCase();
+            
+            // If they manually uploaded a custom image in the browser, use it directly
+            if (customMedicineImages[normalizedKey]) {
+                return `<img src="${customMedicineImages[normalizedKey]}" alt="${normalizedKey}" class="${isLarge ? 'max-h-[68vh] w-auto max-w-full object-contain rounded-lg shadow-lg bg-white' : 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'}" />`;
+            }
+
+            // Otherwise, output the Auto-Healing image tag
+            return `<img src="" alt="${normalizedKey}" onerror="tryVariants(this, '${normalizedKey}', ${isLarge})" class="${isLarge ? 'max-h-[68vh] w-auto max-w-full object-contain rounded-lg shadow-lg bg-white' : 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'}" />`;
+        }
+
+        // --- 4. VIEW & FILTER LOGIC ---
+        function switchMainView(viewMode) {
+            currentMainView = viewMode;
+            const docSection = document.getElementById('doctorsViewSection');
+            const catSection = document.getElementById('catalogViewSection');
+            const tabDocBtn = document.getElementById('tabDoctorsBtn');
+            const tabCatBtn = document.getElementById('tabCatalogBtn');
+
+            if (viewMode === 'CATALOG') {
+                docSection.classList.add('hidden');
+                catSection.classList.remove('hidden');
+                tabCatBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-pharma-700 text-white shadow-sm';
+                tabDocBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-slate-900';
+                renderCatalogView();
+            } else {
+                catSection.classList.add('hidden');
+                docSection.classList.remove('hidden');
+                tabDocBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-pharma-700 text-white shadow-sm';
+                tabCatBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-600 hover:text-slate-900';
+                renderDoctorsList();
+            }
+        }
+
+        function renderMedicineFilterBar() {
+            const bar = document.getElementById('medicineFilterBar');
+            const medicines = Array.from(new Set(doctorsList.flatMap(d => d.medicines.map(m => m.trim().toUpperCase()))));
+
+            let html = `<button onclick="setMedicineFilter('ALL')" class="shrink-0 px-3 py-1 rounded-full text-xs font-semibold transition-all ${activeMedicineFilter === 'ALL' ? 'bg-pharma-700 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">All Doctors (${doctorsList.length})</button>`;
+
+            medicines.forEach(med => {
+                const isActive = activeMedicineFilter === med;
+                html += `<button onclick="setMedicineFilter('${med.replace(/'/g, "\\'")}')" class="shrink-0 px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${isActive ? 'bg-pharma-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span>${med}</span></button>`;
+            });
+            bar.innerHTML = html;
+        }
+
+        function setMedicineFilter(med) {
+            activeMedicineFilter = med;
+            if (currentMainView !== 'DOCTORS') switchMainView('DOCTORS');
+            renderMedicineFilterBar();
+            renderDoctorsList();
+        }
+
+        function resetFilters() {
+            currentSearchQuery = '';
+            activeMedicineFilter = 'ALL';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            renderMedicineFilterBar();
+            renderDoctorsList();
+            renderCatalogView();
+        }
+
+        // --- 5. RENDER DOM ---
+        function renderDoctorsList() {
+            const grid = document.getElementById('doctorsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const query = currentSearchQuery.trim().toLowerCase();
+
+            const filtered = doctorsList.filter(doc => {
+                const matchesSearch = !query || doc.name.toLowerCase().includes(query) || doc.medicines.some(m => m.toLowerCase().includes(query));
+                const matchesPill = activeMedicineFilter === 'ALL' || doc.medicines.some(m => m.trim().toUpperCase() === activeMedicineFilter);
+                return matchesSearch && matchesPill;
+            });
+
+            document.getElementById('doctorCountBadge').textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map((doc, idx) => {
+                const initials = doc.name.replace(/^DR\.?\s*/i, '').split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('').toUpperCase() || 'DR';
+
+                const medicinesHtml = doc.medicines.map((med, medIndex) => {
+                    const normalizedMed = med.trim().toUpperCase();
+                    const theme = MEDICINE_THEMES[normalizedMed] || { badgeText: 'Assigned', composition: 'Capital Pharma', accent: '#0284c7' };
+                    
+                    return `
+                        <div class="group relative bg-slate-50 hover:bg-white rounded-xl border border-slate-200/90 hover:border-pharma-500 hover:shadow-md transition-all overflow-hidden flex flex-col">
+                            <div onclick="openPreviewModal('${normalizedMed.replace(/'/g, "\\'")}', '${doc.id}', ${medIndex})" class="relative h-32 sm:h-36 w-full overflow-hidden cursor-pointer bg-white border-b border-slate-100 flex items-center justify-center">
+                                ${getMedicineVisualMarkup(normalizedMed, false)}
+                                <div class="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-slate-900/65 text-white text-[10px] font-semibold flex items-center gap-1 opacity-90 group-hover:bg-pharma-600 transition">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg><span>View</span>
+                                </div>
+                            </div>
+                            <div class="p-2.5 flex items-center justify-between gap-1.5 bg-white flex-1">
+                                <div class="min-w-0 cursor-pointer" onclick="openPreviewModal('${normalizedMed.replace(/'/g, "\\'")}', '${doc.id}', ${medIndex})">
+                                    <span class="block text-xs sm:text-sm font-extrabold text-slate-800 truncate">${normalizedMed}</span>
+                                    <span class="block text-[10px] font-medium text-slate-500 truncate">${theme.badgeText}</span>
+                                </div>
+                                <button type="button" onclick="triggerMedicineImageUpload('${normalizedMed.replace(/'/g, "\\'")}')" class="shrink-0 p-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <article class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all p-4 sm:p-5 flex flex-col justify-between animate-fade-in">
+                        <div>
+                            <div class="flex items-start justify-between gap-3 pb-3.5 mb-3.5 border-b border-slate-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-pharma-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm shrink-0">${initials}</div>
+                                    <div>
+                                        <div class="flex items-center gap-1.5"><span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-pharma-50 text-pharma-700 border border-pharma-200/60">Doctor #${idx + 1}</span></div>
+                                        <h3 class="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5 tracking-tight">${doc.name}</h3>
+                                    </div>
+                                </div>
+                                <button onclick="openPreviewModal('${doc.medicines[0].trim().toUpperCase().replace(/'/g, "\\'")}', '${doc.id}', 0)" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-pharma-50 hover:bg-pharma-600 text-pharma-700 hover:text-white border border-pharma-200 transition shadow-sm">
+                                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                                    <span>Detail (${doc.medicines.length})</span>
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between mb-2.5"><span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Assigned Medicines (${doc.medicines.join(', ')})</span></div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">${medicinesHtml}</div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function renderCatalogView() {
+            const grid = document.getElementById('catalogGrid');
+            const query = currentSearchQuery.trim().toLowerCase();
+
+            const allMeds = getAllUniqueMedicines().filter(med => {
+                if (!query) return true;
+                const theme = MEDICINE_THEMES[med] || {};
+                return med.toLowerCase().includes(query) || (theme.composition && theme.composition.toLowerCase().includes(query)) || (theme.category && theme.category.toLowerCase().includes(query));
+            });
+
+            document.getElementById('catalogCountBadge').textContent = allMeds.length;
+
+            grid.innerHTML = allMeds.map(med => {
+                const theme = MEDICINE_THEMES[med] || { category: 'Capital Pharma', composition: 'Product', badgeText: 'Visual Aid' };
+                const assignedDocs = doctorsList.filter(d => d.medicines.some(m => m.trim().toUpperCase() === med)).map(d => d.name);
+
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden flex flex-col group">
+                        <div onclick="openPreviewModal('${med.replace(/'/g, "\\'")}')" class="h-48 w-full bg-slate-50 border-b border-slate-100 overflow-hidden cursor-pointer relative flex items-center justify-center">
+                            ${getMedicineVisualMarkup(med, false)}
+                            <span class="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-slate-900/75 text-white text-[11px] font-bold">Tap to Enlarge</span>
+                        </div>
+                        <div class="p-4 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-2"><h3 class="text-base font-extrabold text-slate-900">${med}</h3><span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-pharma-50 text-pharma-700">${theme.badgeText}</span></div>
+                                <p class="text-xs text-slate-500 mt-1 line-clamp-2">${theme.composition || theme.category}</p>
+                            </div>
+                            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2">
+                                <span class="text-[11px] text-slate-500 truncate">${assignedDocs.length ? `Assigned: ${assignedDocs.length} Doctor(s)` : 'Catalog Visual Aid'}</span>
+                                <button onclick="triggerMedicineImageUpload('${med.replace(/'/g, "\\'")}')" class="text-xs font-bold text-pharma-600 hover:text-pharma-800 shrink-0">Change Image</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- 6. CUSTOM IMAGE UPLOADS ---
+        function triggerMedicineImageUpload(medName) {
+            pendingMedicineUploadName = medName.trim().toUpperCase();
+            const fileInput = document.getElementById('hiddenImageInput');
+            fileInput.value = ''; fileInput.click();
+        }
+
+        document.getElementById('hiddenImageInput').addEventListener('change', function(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file || !pendingMedicineUploadName) return;
+
+            const reader = new FileReader();
+            reader.onload = function(loadEvent) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxDim = 1100;
+                    let width = img.width, height = img.height;
+                    if (width > height && width > maxDim) { height = Math.round((height * maxDim) / width); width = maxDim; } 
+                    else if (height > maxDim) { width = Math.round((width * maxDim) / height); height = maxDim; }
+                    canvas.width = width; canvas.height = height;
+                    const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
+                    
+                    customMedicineImages[pendingMedicineUploadName] = canvas.toDataURL('image/jpeg', 0.86);
+                    saveImagesState();
+
+                    renderMedicineFilterBar(); renderDoctorsList(); renderCatalogView();
+                    if (!document.getElementById('imageManagerModal').classList.contains('hidden')) renderImageManagerList();
+                    if (!document.getElementById('previewModal').classList.contains('hidden')) openPreviewModal(pendingMedicineUploadName, activeLightboxDoctorId, activeLightboxMedIndex);
+                };
+                img.src = loadEvent.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function removeMedicineImage(medName) {
+            const normalized = medName.trim().toUpperCase();
+            delete customMedicineImages[normalized];
+            saveImagesState();
+            renderMedicineFilterBar(); renderDoctorsList(); renderCatalogView(); renderImageManagerList();
+        }
+
+        // --- 7. LIGHTBOX & MODALS ---
+        function openPreviewModal(medName, doctorId = null, medIndex = 0, variantKeyOverride = null, variantSubOverride = null) {
+            const normalized = medName.trim().toUpperCase();
+            activeLightboxDoctorId = doctorId;
+            activeLightboxMedIndex = medIndex;
+
+            const modal = document.getElementById('previewModal');
+            const theme = MEDICINE_THEMES[normalized] || { category: 'Capital Pharma Product', composition: 'Pharmaceutical Visual Aid' };
+
+            const docObj = doctorId ? doctorsList.find(d => d.id === doctorId) : null;
+            if (docObj && docObj.medicines.length > 1) {
+                document.getElementById('previewContextLabel').textContent = `DETAILING FOR ${docObj.name}`;
+                document.getElementById('previewSlideCounter').textContent = `${medIndex + 1} / ${docObj.medicines.length}`;
+                document.getElementById('previewSlideCounter').classList.remove('hidden');
+                document.getElementById('prevSlideBtn').classList.remove('hidden');
+                document.getElementById('nextSlideBtn').classList.remove('hidden');
+            } else {
+                document.getElementById('previewContextLabel').textContent = docObj ? `DETAILING FOR ${docObj.name}` : 'CAPITAL PHARMA VISUAL AID';
+                document.getElementById('previewSlideCounter').classList.add('hidden');
+                document.getElementById('prevSlideBtn').classList.add('hidden');
+                document.getElementById('nextSlideBtn').classList.add('hidden');
+            }
+
+            document.getElementById('previewMedicineTitle').textContent = normalized;
+            document.getElementById('previewMedicineSubtitle').textContent = variantSubOverride || theme.composition || theme.category;
+            
+            // Render the image with our new bulletproof system
+            document.getElementById('previewImageContainer').innerHTML = getMedicineVisualMarkup(normalized, true, variantKeyOverride);
+
+            const variantToggle = document.getElementById('previewVariantToggle');
+            if (theme.variants && theme.variants.length > 1 && !customMedicineImages[normalized]) {
+                variantToggle.classList.remove('hidden'); variantToggle.classList.add('flex');
+                const activeKey = variantKeyOverride || normalized;
+                variantToggle.innerHTML = theme.variants.map(v => {
+                    const isCurrent = activeKey === v.file;
+                    return `<button type="button" onclick="openPreviewModal('${normalized}', ${doctorId ? `'${doctorId}'` : 'null'}, ${medIndex}, '${v.file}', '${v.subtitle.replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${isCurrent ? 'bg-teal-400 text-slate-950 shadow-sm' : 'text-white/80 hover:text-white'}">${v.label}</button>`;
+                }).join('');
+            } else {
+                variantToggle.classList.add('hidden'); variantToggle.classList.remove('flex');
+            }
+
+            const assignedDocs = doctorsList.filter(d => d.medicines.some(m => m.trim().toUpperCase() === normalized)).map(d => d.name);
+            document.getElementById('previewAssignedDoctors').textContent = assignedDocs.length ? assignedDocs.join(' • ') : 'Catalog Visual Aid (Not yet assigned)';
+            document.getElementById('previewUploadBtn').onclick = () => triggerMedicineImageUpload(normalized);
+            
+            modal.classList.remove('hidden');
+        }
+
+        function navigateDoctorSlide(direction) {
+            if (!activeLightboxDoctorId) return;
+            const docObj = doctorsList.find(d => d.id === activeLightboxDoctorId);
+            if (!docObj || docObj.medicines.length <= 1) return;
+            const total = docObj.medicines.length;
+            activeLightboxMedIndex = (activeLightboxMedIndex + direction + total) % total;
+            openPreviewModal(docObj.medicines[activeLightboxMedIndex], activeLightboxDoctorId, activeLightboxMedIndex);
+        }
+
+        function closePreviewModal() { document.getElementById('previewModal').classList.add('hidden'); }
+
+        function openImageManagerModal() { renderImageManagerList(); document.getElementById('imageManagerModal').classList.remove('hidden'); }
+        function closeImageManagerModal() { document.getElementById('imageManagerModal').classList.add('hidden'); }
+
+        function renderImageManagerList() {
+            const container = document.getElementById('imageManagerList');
+            const medicines = getAllUniqueMedicines();
+
+            container.innerHTML = medicines.map(med => {
+                const hasCustom = Boolean(customMedicineImages[med]);
+                const statusText = hasCustom ? 'Custom Image Uploaded' : 'Check Local Files / SVG';
+                const statusClass = hasCustom ? 'text-emerald-600 font-semibold' : 'text-pharma-600 font-semibold';
+
+                return `
+                    <div class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 bg-white shadow-sm">
+                        <div onclick="openPreviewModal('${med.replace(/'/g, "\\'")}')" class="w-16 h-16 rounded-lg overflow-hidden border border-slate-100 shrink-0 flex items-center justify-center bg-slate-50 cursor-pointer">
+                            ${getMedicineVisualMarkup(med, false)}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-extrabold text-slate-800 truncate">${med}</h4>
+                            <p class="text-[11px] ${statusClass}">${statusText}</p>
+                            <div class="mt-2 flex items-center gap-2">
+                                <button type="button" onclick="triggerMedicineImageUpload('${med.replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded-lg bg-pharma-50 hover:bg-pharma-100 text-pharma-700 text-xs font-semibold transition">
+                                    ${hasCustom ? 'Replace Photo' : 'Upload Custom'}
+                                </button>
+                                ${hasCustom ? `<button type="button" onclick="removeMedicineImage('${med.replace(/'/g, "\\'")}')" class="px-2 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold transition">Restore Default</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // --- 8. ADD DOCTOR MODAL ---
+        function openAddDoctorModal() {
+            const meds = getAllUniqueMedicines();
+            document.getElementById('quickAddMedChips').innerHTML = meds.map(med => `<button type="button" onclick="appendMedToInput('${med.replace(/'/g, "\\'")}')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-pharma-50 hover:text-pharma-700 text-slate-600 text-xs font-semibold transition">+ ${med}</button>`).join('');
+            document.getElementById('addDoctorModal').classList.remove('hidden');
+        }
+
+        function closeAddDoctorModal() { document.getElementById('addDoctorModal').classList.add('hidden'); }
+        function appendMedToInput(medName) {
+            const input = document.getElementById('newDocMeds');
+            const existing = input.value.split(',').map(s => s.trim().toUpperCase()).filter(Boolean);
+            if (!existing.includes(medName)) existing.push(medName);
+            input.value = existing.join(', ');
+        }
+
+        function handleAddDoctor(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('newDocName');
+            const medsInput = document.getElementById('newDocMeds');
+            let formattedName = nameInput.value.trim().toUpperCase();
+            if (!formattedName.startsWith('DR')) formattedName = 'DR. ' + formattedName;
+            const meds = medsInput.value.split(',').map(m => m.trim().toUpperCase()).filter(Boolean);
+            
+            if (!formattedName || meds.length === 0) return;
+            doctorsList.push({ id: 'doc-' + Date.now(), name: formattedName, medicines: meds });
+            saveDoctorsState();
+            nameInput.value = ''; medsInput.value = '';
+            closeAddDoctorModal(); renderMedicineFilterBar(); renderDoctorsList();
+        }
+
+        // --- 9. EVENT LISTENERS ---
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+        searchInput.addEventListener('input', function(e) {
+            currentSearchQuery = e.target.value;
+            clearSearchBtn.classList.toggle('hidden', currentSearchQuery.trim().length === 0);
+            renderDoctorsList(); renderCatalogView();
+        });
+
+        clearSearchBtn.addEventListener('click', function() {
+            currentSearchQuery = ''; searchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            renderDoctorsList(); renderCatalogView(); searchInput.focus();
+        });
+
+        window.addEventListener('keydown', function(e) {
+            if (!document.getElementById('previewModal').classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') navigateDoctorSlide(1);
+                if (e.key === 'ArrowLeft') navigateDoctorSlide(-1);
+                if (e.key === 'Escape') closePreviewModal();
+            }
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('previewModal')) closePreviewModal();
+            if (e.target === document.getElementById('imageManagerModal')) closeImageManagerModal();
+            if (e.target === document.getElementById('addDoctorModal')) closeAddDoctorModal();
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            loadState(); renderMedicineFilterBar(); renderDoctorsList(); renderCatalogView();
+        });
+    </script>
+</body>
+</html>
