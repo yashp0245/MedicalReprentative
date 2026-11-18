@@ -125,7 +125,7 @@
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
                     <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500">All Capital Pharma Visual Aids</h2>
-                    <span id="catalogCountBadge" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-teal-100 text-teal-800">11</span>
+                    <span id="catalogCountBadge" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-teal-100 text-teal-800">14</span>
                 </div>
             </div>
             <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"></div>
@@ -228,9 +228,16 @@
             "CYPOTRON": ["CYPOTRAN.jpg", "CYPOTRAN.jpeg", "cypotran.jpg", "cypotran.jpeg", "CYPOTRAN_2.jpg", "cypotron.jpg"],
             "CYPOTRAN": ["CYPOTRAN.jpg", "CYPOTRAN.jpeg", "cypotran.jpg", "cypotran.jpeg", "CYPOTRAN_2.jpg"],
             "REFACOLD": ["REFACOLD.jpeg", "REFACOLD.jpg", "refacold.jpeg", "refacold.jpg", "REFACOLD_2.jpeg"],
-            "REFACOLD SYRUP": ["REFACOLD SYRUP.jpeg", "REFACOLD SYRUP.jpeg", "refacold SYRUP.jpeg", "refacold SYRUP.jpeg", "REFACOLD SYRUP_2.jpeg"],
-            "MNC": ["MNC.jpeg", "MNC.jpg", "mnc.jpeg", "mnc.jpg", "MNC_2.jpeg"],
-            "THANKYOU": ["THANKYOU.jpeg", "THANKYOU.jpg", "thankyou.jpeg", "thankyou.jpg", "THANKYOU_2.jpeg"],
+            "REFACOLD SYRUP": [
+                "REFACOLD SYRUP.jpeg", "REFACOLD SYRUP.jpg",
+                "refacold syrup.jpeg", "refacold syrup.jpg",
+                "Refacold Syrup.jpeg", "Refacold Syrup.jpg",
+                "REFACOLD-SYRUP.jpeg", "REFACOLD-SYRUP.jpg",
+                "REFACOLD_SYRUP.jpeg", "REFACOLD_SYRUP.jpg",
+                "REFACOLD SYRUP_2.jpeg", "REFACOLD SYRUP_2.jpg"
+            ],
+            "MNC": ["MNC.jpeg", "MNC.jpg", "mnc.jpeg", "mnc.jpg", "MNC_2.jpeg", "MNC_2.jpg"],
+            "THANKYOU": ["THANKYOU.jpeg", "THANKYOU.jpg", "thankyou.jpeg", "thankyou.jpg", "THANK YOU.jpeg", "THANK YOU.jpg", "THANKYOU_2.jpeg"],
             "REFACOLD+": ["REFACOLD+.jpg", "REFACOLD+.jpeg", "refacold+.jpg", "REFACOLD+_2.jpg"],
             "SALBREX": ["SALBREX.jpg", "SALBREX.jpeg", "salbrex.jpg", "salbrex.jpeg", "SALBREX_2.jpg"],
             "NIP SP": ["NIP SP.jpg", "NIP SP.jpeg", "nip sp.jpg", "nip sp.jpeg", "NIP_SP.jpg", "NIP SP_2.jpg"],
@@ -285,7 +292,13 @@
             'NIP': { category: 'Analgesic & Antipyretic', composition: 'Nimesulide 100mg + Paracetamol 325mg Tablet', accent: '#0284c7', bgLight: '#e0f2fe', badgeText: 'NIP Tablet', form: 'tablet' },
             'STEROBIT': { category: 'Specialty Formulation', composition: 'Capital Pharma Specialty Care', accent: '#7c3aed', bgLight: '#ede9fe', badgeText: 'Steroid / Care', form: 'vial' },
             'REFACOLD': { category: 'Pediatric & Adult Cold Relief', composition: 'Paracetamol 125mg + Phenylephrine 5mg + CPM 0.5mg Drops / Plus Tab', accent: '#0d9488', bgLight: '#ccfbf1', badgeText: 'Drops & Plus Tab', form: 'syrup',
-                variants: [ { label: 'Refacold Drops', file: 'REFACOLD', subtitle: 'Paracetamol 125mg + Phenylephrine 5mg + CPM 0.5mg + Sodium Citrate 60mg Drops' }, { label: 'Refacold + Tab', file: 'REFACOLD+', subtitle: 'Aceclofenac 100mg + Paracetamol 325mg + Phenylephrine 5mg + Caffeine 25mg + Cetirizine 10mg' } ] },
+                variants: [
+                    { label: 'Refacold Drops', file: 'REFACOLD', subtitle: 'Paracetamol 125mg + Phenylephrine 5mg + CPM 0.5mg + Sodium Citrate 60mg Drops' },
+                    { label: 'Refacold + Tab', file: 'REFACOLD+', subtitle: 'Aceclofenac 100mg + Paracetamol 325mg + Phenylephrine 5mg + Caffeine 25mg + Cetirizine 10mg' },
+                    { label: 'Refacold Syrup', file: 'REFACOLD SYRUP', subtitle: 'Pediatric Cold & Fever Relief Syrup' }
+                ]
+            },
+            'REFACOLD SYRUP': { category: 'Cold & Fever Syrup', composition: 'Pediatric Cold & Fever Relief Syrup', accent: '#0d9488', bgLight: '#ccfbf1', badgeText: 'Refacold Syrup', form: 'syrup' },
             'REFACOLD+': { category: 'Cold & Fever Relief', composition: 'Aceclofenac 100mg + Paracetamol 325mg + Phenylephrine 5mg + Caffeine 25mg + Cetirizine 10mg', accent: '#e11d48', bgLight: '#ffe4e6', badgeText: 'Anti-Cold Tablet', form: 'tablet' },
             'CYPOTRON': { category: 'Appetite Stimulant & Hepato-Protective', composition: 'Cyproheptadine 2mg + Tricholine Citrate 275mg + Sorbitol Solution 70% Syrup', accent: '#ea580c', bgLight: '#ffedd5', badgeText: 'Cypotran Syrup', form: 'syrup' },
             'SALBREX': { category: 'Cough & Bronchodilator Syrup', composition: 'Ambroxol HCl 15mg + Terbutaline Sulphate 1.25mg + Guaiphenesin 50mg + Menthol 2.5mg', accent: '#16a34a', bgLight: '#dcfce7', badgeText: 'Cough Syrup', form: 'syrup' },
@@ -293,7 +306,9 @@
             'NIP SP': { category: 'Pain & Inflammation Relief', composition: 'Nimesulide 100mg + Paracetamol 325mg + Serratiopeptidase 15mg', accent: '#dc2626', bgLight: '#fee2e2', badgeText: 'NIP-SP Tab', form: 'tablet' },
             'IDL': { category: 'Fast Pain Reliever Gel', composition: 'Diclofenac Diethylamine 1.16% + Linseed Oil 3% + Methyl Salicylate 10% + Menthol 5% Gel', accent: '#d97706', bgLight: '#fef3c7', badgeText: 'IDL Gel', form: 'vial' },
             'ELOX GEL': { category: 'Antacid & Anti-Flatulent Gel', composition: 'Oxetacaine 10mg + Aluminium Hydroxide 0.291gm + Magnesium Hydroxide 98mg Gel', accent: '#15803d', bgLight: '#dcfce7', badgeText: 'Antacid Gel', form: 'syrup' },
-            'NIPCOLD +': { category: 'Sinusitis & Cold Relief', composition: 'Nimesulide 100mg + Paracetamol 325mg + Phenylephrine 10mg + Caffeine 25mg Tablets', accent: '#b91c1c', bgLight: '#fee2e2', badgeText: 'Nipcold+ Tab', form: 'tablet' }
+            'NIPCOLD +': { category: 'Sinusitis & Cold Relief', composition: 'Nimesulide 100mg + Paracetamol 325mg + Phenylephrine 10mg + Caffeine 25mg Tablets', accent: '#b91c1c', bgLight: '#fee2e2', badgeText: 'Nipcold+ Tab', form: 'tablet' },
+            'MNC': { category: 'Capital Pharma Product', composition: 'MNC Visual Aid', accent: '#2563eb', bgLight: '#dbeafe', badgeText: 'MNC', form: 'tablet' },
+            'THANKYOU': { category: 'Detailing Slide', composition: 'Closing Presentation Slide', accent: '#0f766e', bgLight: '#ccfbf1', badgeText: 'Closing Slide', form: 'tablet' }
         };
 
         let doctorsList = [];
@@ -322,7 +337,7 @@
         function getAllUniqueMedicines() {
             const set = new Set();
             doctorsList.forEach(doc => doc.medicines.forEach(med => set.add(med.trim().toUpperCase())));
-            ['ELOX GEL', 'NIPCOLD +', 'REFACOLD+'].forEach(extra => set.add(extra));
+            ['ELOX GEL', 'NIPCOLD +', 'REFACOLD+', 'REFACOLD SYRUP', 'MNC', 'THANKYOU'].forEach(extra => set.add(extra));
             return Array.from(set);
         }
 
